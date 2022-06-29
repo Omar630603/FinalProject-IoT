@@ -17,6 +17,7 @@
 
 #define FAN D1
 
+
 DHT_Unified dht(DHTPIN, DHTTYPE);
 // Your WiFi credentials.
 // Set password to "" for open networks.
@@ -103,12 +104,17 @@ void loop()
       if (event.temperature > 30.00) {
         digitalWrite(FAN, LOW);
         pinMode(FAN, OUTPUT);
+        Blynk.virtualWrite(V0, 1);
       }
       else {
         digitalWrite(FAN, HIGH);
         pinMode(FAN, INPUT);
+        Blynk.virtualWrite(V0, 0);
       }
     Blynk.virtualWrite(V1, event.temperature);
+    Serial.print("Temperature: ");
+    Serial.print(event.temperature);
+    Serial.println(" *C");
   }
 
   dht.humidity().getEvent(&event);
