@@ -121,7 +121,6 @@ void loop()
       else {
         digitalWrite(FAN, HIGH);
         pinMode(FAN, INPUT);
-        Blynk.virtualWrite(V0, 0);
       }
     Blynk.virtualWrite(V1, event.temperature);
     Serial.print("Temperature: ");
