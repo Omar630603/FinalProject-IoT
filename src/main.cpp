@@ -76,6 +76,18 @@ void setup()
   dht.begin();
 }
 
+BLYNK_WRITE(V0)
+{
+  if( param.asInt() ) {
+    digitalWrite(FAN, LOW);
+    pinMode(FAN, OUTPUT);
+  } else {
+    digitalWrite(FAN, HIGH);
+    pinMode(FAN, INPUT);
+  }
+
+}
+
 void loop()
 {
   // Reconnect WiFi
